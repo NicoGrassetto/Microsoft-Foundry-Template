@@ -33,7 +33,7 @@ Learn more about [Microsoft Foundry Agent Service](https://learn.microsoft.com/e
 ```
 ├── infra/
 │   ├── main.bicep            # Azure infrastructure (AI Services, Storage, Bing Grounding)
-│   └── main.bicepparam       # Parameter values
+│   └── main.parameters.json  # azd parameter bridge
 ├── src/
 │   ├── __init__.py
 │   ├── config.py             # Centralised configuration from env
@@ -48,8 +48,8 @@ Learn more about [Microsoft Foundry Agent Service](https://learn.microsoft.com/e
 │       ├── __init__.py
 │       └── math.py           # Sample Function tool (math operations)
 ├── hooks/
-│   ├── preprovision.sh       # Auto-detects max GPT-4o quota before deploy
-│   └── postprovision.sh      # Auto-writes .env and creates agent(s) after azd provision
+│   ├── preprovision.ps1      # Quota-aware Foundry model selector for azd
+│   └── preprovision.sh       # POSIX wrapper for the PowerShell selector
 ├── azure.yaml                # azd project descriptor
 ├── .env.example
 ├── .gitignore
@@ -67,8 +67,30 @@ Learn more about [Microsoft Foundry Agent Service](https://learn.microsoft.com/e
 ## Quick Start
 
 ```bash
-azd up                  # provisions infra, writes .env, and creates agent(s) via post-provision hook
+azd up                  # selects model deployments, then provisions infra
 python -m src.main      # runs the conversation loop against the persisted agent
+```
+
+During `azd up`, the `preprovision` hook runs after the Azure region is known. It queries the live Foundry/OpenAI model catalog and subscription quota for that region, shows deployable model/SKU/version options, and tracks remaining quota as model deployments are selected.
+
+To test the selector without writing `azd` environment values or deploying resources:
+
+```powershell
+.\hooks\preprovision.ps1 -Location eastus -NonInteractive -DryRun
+```
+
+For CI or no-prompt runs, set `MODEL_DEPLOYMENTS_JSON` before provisioning:
+
+```json
+[
+  {
+    "deploymentName": "gpt-4o",
+    "modelName": "gpt-4o",
+    "modelVersion": "2024-11-20",
+    "skuName": "GlobalStandard",
+    "capacity": 30
+  }
+]
 ```
 
 ## Manual Setup
@@ -80,9 +102,10 @@ az group create --name my-agent-rg --location eastus
 
 az deployment group create \
   --resource-group my-agent-rg \
-  --template-file infra/main.bicep \
-  --parameters infra/main.bicepparam
+  --template-file infra/main.bicep
 ```
+
+The manual deployment uses the default GPT-4o deployment unless `modelDeploymentsJsonBase64` is supplied. The `azd` path sets this automatically from the quota-aware selector.
 
 ### 2. Configure Environment
 
@@ -254,7 +277,7 @@ Bicep deploys:
 | Azure AI Services (S0) | Microsoft Foundry hub + Agent Service data plane |
 | Storage Account (LRS) | Thread state, files, vector stores |
 | Bing Grounding (G1) | Web search for the Bing Grounding tool |
-| GPT-4o deployment | Model used by the agent |
+| Model deployments | One or more OpenAI model deployments selected by the quota-aware `azd` hook |
 
 ---
 
