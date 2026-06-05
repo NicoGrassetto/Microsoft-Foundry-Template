@@ -17,15 +17,12 @@ This template can be used for Microsft Foundry: `PoCs`, `Demos`, `Pilots`, `Hack
 ## 🚀 Get started
 ## 📦 What's in this repository
 
-| Surface | What it is | Best for |
-| --- | --- | --- |
-| 📥 **[Releases](https://github.com/microsoft/discovery/releases)** | Signed Windows installers and release notes for the Discovery app. | Downloading the latest build of the app. |
-| 🤖 **[`agents/`](https://github.com/microsoft/discovery/blob/main/agents)** | Catalog of AI research agents (1P and 3P) surfaced in Discovery. Each entry contains a `metadata.yaml`, `agent.yaml`, `README.md`, and optional `tools/`. | Browsing what's available, or contributing a new agent. |
-| 📑 **[`docs/`](https://github.com/microsoft/discovery/blob/main/docs)** | Documentation and pointers for both Microsoft Discovery and the Discovery app, including documentation for authoring guides and schemas. | Learning more about Discovery experiences and best practices. |
-| 🎥 **[How to videos](https://github.com/microsoft/discovery/blob/main/docs/how-to-videos/README.md)** | Curated how-to video content for Discovery workflows and onboarding. | Watching guided walkthroughs and quick task demos. |
-| 🧰 **[`starter-kits/`](https://github.com/microsoft/discovery/blob/main/starter-kits)** | Catalog of starter kits — `kit.json` manifests that bundle one or more catalog agents into a launchable scenario. | Browsing pre-built workflows, or publishing a new kit. |
-| 💬 **[Discussions](https://github.com/microsoft/discovery/discussions)** | Q&A, Ideas, Bugs, and Show-and-tell — the single place for everything from "how do I…?" to bug reports, ideas, and sharing what you've built. | Asking questions, suggesting ideas, sharing what you've built, and reporting bugs. |
-| 🧪 **[`.github/skills/`](https://github.com/microsoft/discovery/blob/main/.github/skills)** | Three Copilot skills auto-discovered by Copilot CLI and VS Code Copilot Chat — for browsing the catalog and deploying agents / starter kits to **Microsoft Discovery services** (cloud, via Microsoft Foundry). Not used by the local Discovery app today. | Researchers and developers integrating the catalog into a Microsoft Foundry workflow. |
+| Surface | What it is |
+| --- | --- |
+| 🏗️ **[`infra/`](https://github.com/NicoGrassetto/Microsoft-Foundry-Starter-Kit/blob/main/infra)** | Bicep infrastructure-as-code (`main.bicep`) to provision the Microsoft Foundry resources your agents need. |
+| 🧪 **[`tests/`](https://github.com/NicoGrassetto/Microsoft-Foundry-Starter-Kit/blob/main/tests)** | Scripts to interact with and validate your agents, such as `interact_with_agent.py` for chatting from the terminal. |
+| 🤖 **[`agents/`](https://github.com/NicoGrassetto/Microsoft-Foundry-Starter-Kit/blob/main/src/agents)** | Your Foundry agents (e.g. `reviewer_agent`, `writer_agent`), each with its Python code and `.yaml` definition. |
+| 📑 **[`prompts/`](https://github.com/NicoGrassetto/Microsoft-Foundry-Starter-Kit/blob/main/src/agents/reviewer_agent/prompts)** | Versioned instruction files (e.g. `v1_instructions.txt`) that define each agent's behaviour. |
 
 ## 📚 Resources
 
