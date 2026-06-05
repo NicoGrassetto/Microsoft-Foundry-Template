@@ -1,2 +1,2 @@
-# Microsoft Foundry Starter Kit
+# Microsoft Foundry Template
 
