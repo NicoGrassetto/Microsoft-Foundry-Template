@@ -44,10 +44,15 @@ Worth a look if you want to level up your Foundry, AI, and GitHub skills.
 - **[GitHub Copilot](https://learn.microsoft.com/en-us/credentials/certifications/github-copilot/?WT.mc_id=certposter_poster_wwl&practice-assessment-type=certification)** — using GitHub Copilot effectively across the development workflow.
 - **[GitHub Certified: Agentic AI Developer (beta)](https://learn.microsoft.com/en-us/credentials/certifications/agentic-ai-developer/?practice-assessment-type=certification)** — operating, governing, and orchestrating AI agents in production SDLC workflows with GitHub as the control plane (exam GH-600).
 
-## My setup
-My setup (often asked by customers)
+## 🛠️ My gear
+My setup (often asked by customers):
 
-OpenCode
-GitHub & GitHub Copilot
-Hermes agent from Noure 
-Keyboard: Keychron K8 Pro
+- **OpenCode** — my AI coding agent of choice.
+- **Hermes agent** — my go-to agent for day-to-day work.
+- **M365 Copilot** — for work stuff.
+- **Veloce**
+- **Microsoft Scout**
+- **Brave**
+- **Keyboard** — Keychron K8 Pro.
+- **Mac mini** — driving a dual-screen setup with an ultrawide monitor.
+- **MacBook** — because it just works.
